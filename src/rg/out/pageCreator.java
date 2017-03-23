@@ -4,22 +4,15 @@ public class pageCreator {
 
 	
 	
-	public static String makeHTML(){
+	public static String makeHTML(String content){
 		StringBuffer sb = new StringBuffer();
 		
-		
 		sb.append("<html>\n");
-
-
 		sb.append("<head>\n");
-
 		sb.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"feature.css\">\n");
 		sb.append("</head>\n");
-
 		sb.append("<body>\n");
-
 		sb.append("<div id=\"header\">\n");
-
 		sb.append("</div>\n");
 
 		sb.append("<div id=\"content_container\">\n");
