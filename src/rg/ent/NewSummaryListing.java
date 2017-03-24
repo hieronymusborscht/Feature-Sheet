@@ -52,12 +52,12 @@ public class NewSummaryListing {
 		 string_fields.put("postal","");
 		 string_fields.put("lr_remarks22","");
 		 string_fields.put("lr_remarks33","");
-		 string_fields.put("view","");		// view  lm_char100_3
+		 string_fields.put("the_view","");		// view  lm_char100_3
 		
 		 string_fields.put("lfd_featuresincluded_24",""); // features_included
 		 string_fields.put("lfd_siteinfluences_15","");
 		 string_fields.put("lfd_styleofhome_1","");
-		 string_fields.put("lft_amenities_25","");
+		 string_fields.put("lfd_amenities_25","");
 		 string_fields.put("lfd_basementarea_6","");
 
 		 string_fields.put("gross_tax",""); 			// lm_dec_16
