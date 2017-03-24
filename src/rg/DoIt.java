@@ -4,7 +4,6 @@ package rg;
 
 
 public class DoIt {
-
     public static void main(String[] args) {
         System.out.println("Executing program...");
         RunnableImplementation r = new RunnableImplementation();

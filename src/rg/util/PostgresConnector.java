@@ -291,34 +291,25 @@ public class PostgresConnector {
 		try{
 			connection = getConnection();	
 			StringBuffer sb = new StringBuffer();
-			sb.append("select m_id,img_id,first_name, last_name, email, pass_hash, role, areas_serviced, description, languages, salesforce_id,phone, visible, mem_login, datecreated, web_site, link_text,admin_level, thumb_320 from member where visible='true' ");
-			sb.append(" and mem_login in (");  
+			sb.append("select m_id,img_id,first_name, last_name, email, pass_hash, role, areas_serviced, description, languages, salesforce_id,phone, visible, mem_login, datecreated, web_site, link_text,admin_level, thumb_320 from member where ");
+			sb.append(" mem_login in (");  
 			java.util.Iterator<String> string_it = l_display_ids.iterator();
 			int counter = 0;
 			while(string_it.hasNext()){
 				string_it.next();
-				if(counter>0){
-					sb.append(","); 
-				}
+				if(counter>0){	sb.append(","); 	}
 				sb.append("?");
 				counter++;
 			}
 			sb.append(") order by first_name "); 
-			
-			System.out.println(sb.toString());
-			
-			
+			//System.out.println(sb.toString());
 			PreparedStatement prepstmt = connection.prepareStatement(sb.toString());	
 			string_it = l_display_ids.iterator();
 			counter = 1;
 			while(string_it.hasNext()){
-				
 				prepstmt.setString(counter, string_it.next());
-				
 				counter++;
 			}
-			
-			//S
 			//prepstmt.setString(1, key_field);
 			ResultSet rs = prepstmt.executeQuery();
 			while(rs.next()){
@@ -331,15 +322,12 @@ public class PostgresConnector {
 				usr.setString_field("user_email",rs.getString("email"));
 				usr.setString_field("phone",rs.getString("phone"));
 				usr.setString_field("role",rs.getString("role"));
-				
-				
 				usr.setString_field("areas_serviced", rs.getString("areas_serviced"));
 				usr.setString_field("description", rs.getString("description")); 
 				usr.setString_field("languages", rs.getString("languages"));
 				//rs.getString("phone"); 
 				//rs.getBoolean("visible"); 
 				usr.setString_field("mem_login",rs.getString("mem_login"));
-				
 				usr.setString_field("web_site", rs.getString("web_site")); 
 				usr.setString_field("link_text", rs.getString("link_text"));
 				usr.setAdmin_level(rs.getInt("admin_level")); 
