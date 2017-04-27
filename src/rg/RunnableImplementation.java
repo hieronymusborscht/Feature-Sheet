@@ -14,6 +14,7 @@ public class RunnableImplementation implements Runnable {
     	//select m_id,img_id,first_name, last_name, email, pass_hash, role, areas_serviced, description, languages, salesforce_id,phone, visible, mem_login, datecreated, web_site, link_text,admin_level, thumb_320 from member where mem_login not in ('') and  visible='true' order by first_name 
 
     	 java.util.TreeMap<String, NewSummaryListing> listings = rg.util.PostgresConnector.loadRoyaltyListings();
+    	 System.out.println("listing loaded "+ listings.size());
     	 NewSummaryListing listing = null;
     	 java.util.HashSet<String> member_login_set = new java.util.HashSet<String>();
     	 java.util.Set<String> listing_mls_set = listings.keySet();
@@ -30,7 +31,7 @@ public class RunnableImplementation implements Runnable {
     	 
     	 java.util.TreeMap<String, rg.ent.NewUser> agents = rg.util.PostgresConnector.loadAgentsbyListings(member_login_set);
     	 
-    	 //System.out.println("agents size: " +agents.size());
+    	 System.out.println("agents size: " +agents.size());
     	 
     	 java.util.Set<String> agent_keys = agents.keySet();
     	 java.util.Iterator<String> ak_it = agent_keys.iterator();
@@ -41,7 +42,18 @@ public class RunnableImplementation implements Runnable {
     	 
     	 //findHighestPrice( listings, agents.get(agents.firstKey()));
     	 
-    	 
+    	 int counter_n = 0;
+    	 while(true){
+    		 try{
+    			System.out.println(" do an iteraton "+ counter_n );
+    			Thread.sleep(2000);
+    			counter_n=counter_n+1;
+			} catch (Exception e) {
+     	//catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+    	 }
+    	 /*
         for (int i = 0; i < 10; i++) {
         	try {
         		
@@ -56,12 +68,13 @@ public class RunnableImplementation implements Runnable {
         		
         		
         		//WriteAnHTMLPage("the content here", "shane", "page.html");
-				//Thread.sleep(20000);
+				Thread.sleep(2000);
 			} catch (Exception e) {
         	//catch (InterruptedException e) {
 				e.printStackTrace();
 			}
         }
+        */
     }
     
     
@@ -75,7 +88,7 @@ public class RunnableImplementation implements Runnable {
     		
     			temp_list_a  = listings.get(keys_it.next());
     			if(agent.getStringValue("mem_login").equals(temp_list_a.getStringValue("la1_loginname"))){
-    				System.out.println(temp_list_a.getAskingprice());
+    				//System.out.println(temp_list_a.getAskingprice());
     				price_sorted_list.put(temp_list_a.getAskingprice(), temp_list_a);
     			}
     			//if(list.getAskingprice()<)
